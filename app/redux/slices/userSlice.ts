@@ -1,31 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit';
+"use client";
+
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  email: '',
-  password: '', 
-  token: localStorage.getItem('token') || null,
-  user: localStorage.getItem('user') || null,
-  role: localStorage.getItem('role') || null,
-
+  email: "",
+  password: "", 
+  token: null, // Local storage access should be moved to components/hooks
+  user: null,  // Same for user and role
+  role: null,
 };
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
-   
     setToken: (state, action) => {
       state.token = action.payload.token;
       state.user = action.payload.name;
       state.role = action.payload.role;
-
-      
     },
     clearToken: (state) => {
       state.token = null;
       state.user = null;
       state.role = null;
-
     },
     setAuthToken: (state, action) => {
       state.token = action.payload.token;

@@ -8,8 +8,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from '@/app/ui/button';
-import { useActionState, useEffect, useState } from 'react';
-import { redirect } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { useUser } from '../Hooks/useUser';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
