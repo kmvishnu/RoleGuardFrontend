@@ -26,12 +26,12 @@ export default function NavLinks() {
       href: '/dashboard/updateRole',
       icon: DocumentDuplicateIcon,
     },
-    { name: 'EmiCalculator', href: '/dashboard/emiCalculator', icon: UserGroupIcon },
+    // { name: 'EmiCalculator', href: '/dashboard/emiCalculator', icon: UserGroupIcon },
 
   ] : 
   [
     { name: 'Home', href: '/dashboard', icon: HomeIcon },
-    { name: 'EmiCalculator', href: '/dashboard/emiCalculator', icon: UserGroupIcon },
+    // { name: 'EmiCalculator', href: '/dashboard/emiCalculator', icon: UserGroupIcon },
   ]
 
  
