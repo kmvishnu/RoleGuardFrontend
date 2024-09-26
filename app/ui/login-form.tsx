@@ -189,8 +189,8 @@ export default function LoginForm() {
           >
             <strong>* Use Credentials :
             </strong><br/>
-          Email : test@gmail.com,<br/>
-          Password : test
+          Email : admin@gmail.com,<br/>
+          Password : admin
           </p>
         
         </div>
