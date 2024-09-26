@@ -300,17 +300,7 @@ export default function RegisterForm() {
                     )}
                 </div>
 
-                <div>
-                    <p
-                        className={`${lusitana.className} text-l text-gray-500 md:text-l md:leading-normal p-2`}
-                    >
-                        <strong>* Use Credentials :
-                        </strong><br />
-                        Email : test@gmail.com,<br />
-                        Password : test
-                    </p>
-
-                </div>
+                
 
             </div>
         </form>
