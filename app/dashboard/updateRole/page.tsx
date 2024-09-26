@@ -44,7 +44,6 @@ const UpdateRole = () => {
       setSelectedUser('');
       setSelectedRole('');
       viewAllUsers();
-
     } else {
       alert('Failed to update user role');
     }
@@ -54,8 +53,8 @@ const UpdateRole = () => {
     <div className="flex flex-col items-center justify-center mt-10">
       <h2 className="text-xl font-bold mb-4">Update User Role</h2>
 
-      <div className="flex space-x-4">
-        <div className="flex flex-col">
+      <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 w-full md:w-auto">
+        <div className="flex flex-col w-full md:w-1/3">
           <label htmlFor="user-select" className="mb-2">Select User</label>
           <select
             id="user-select"
@@ -72,8 +71,7 @@ const UpdateRole = () => {
           </select>
         </div>
 
-
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full md:w-1/3">
           <label htmlFor="role-select" className="mb-2">Select Role</label>
           <select
             id="role-select"
@@ -89,7 +87,7 @@ const UpdateRole = () => {
 
         <button
           onClick={handleApply}
-          className="bg-blue-500 text-white py-2 px-4 rounded ml-4 self-end"
+          className="bg-sky-950 text-white py-2 px-4 rounded self-start md:self-end"
         >
           Apply
         </button>
