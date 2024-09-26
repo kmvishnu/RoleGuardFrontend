@@ -5,11 +5,11 @@ import config from "../config";
 import { useDispatch } from "react-redux";
 import { clearToken, setToken } from "../redux/slices/userSlice";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";  // Import js-cookie for cookie management
 
 export const useUser = () => {
   const [error, setError] = useState("");
   const [authData, setAuthData] = useState({ token: null, name: null, role: null }); 
-
   const dispatch = useDispatch();
 
   const signUpUser = async (userData: any) => {
@@ -42,12 +42,11 @@ export const useUser = () => {
   };
 
   const logoutUser = () => {
-    // Clear local storage and Redux state
-    if (typeof window !== "undefined") {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      localStorage.removeItem("role");
-    }
+    // Clear cookies and Redux state
+    Cookies.remove("token");
+    Cookies.remove("user");
+    Cookies.remove("role");
+    sessionStorage.clear(); 
 
     // Clear Redux state
     dispatch(clearToken());
@@ -56,12 +55,13 @@ export const useUser = () => {
     setAuthData({ token: null, name: null, role: null });
   };
 
-  // Use effect to handle localStorage updates when authData changes
+  // Use effect to handle cookie updates when authData changes
   useEffect(() => {
-    if (authData.token && authData.role && authData.name && typeof window !== "undefined") {
-      localStorage.setItem("token", authData.token);
-      localStorage.setItem("user", authData.name);
-      localStorage.setItem("role", authData.role);
+    if (authData.token && authData.role && authData.name) {
+      // Set cookies with token, name, and role. You can configure expiration if needed.
+      Cookies.set("token", authData.token, { expires: 1 });  // expires in 1 day
+      Cookies.set("user", authData.name, { expires: 1 });
+      Cookies.set("role", authData.role, { expires: 1 });
     }
   }, [authData]);
 

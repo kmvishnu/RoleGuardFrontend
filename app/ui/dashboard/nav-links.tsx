@@ -8,33 +8,37 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSelector } from 'react-redux';
-
-
-// Map of links to display in the side navigation.
-// Depending on the size of the application, this would be stored in a database.
-
+import Spinner from '../spinner'; 
+import { useEffect, useState } from 'react';
 
 export default function NavLinks() {
   const pathname = usePathname();
-  const userRole = useSelector((state:any) => state.user.role);
+  const userRole = useSelector((state: any) => state.user.role);
+  const [loading, setLoading] = useState(true);
 
-  const links = userRole === "admin"? [
-    { name: 'Home', href: '/dashboard', icon: HomeIcon },
-    { name: 'AllUsers', href: '/dashboard/allUsers', icon: UserGroupIcon },
-    {
-      name: 'UpdateRole',
-      href: '/dashboard/updateRole',
-      icon: DocumentDuplicateIcon,
-    },
-    { name: 'EmiCalculator', href: '/dashboard/emiCalculator', icon: UserGroupIcon },
+  useEffect(() => {
+    if (userRole !== null && userRole !== undefined) {
+      setLoading(false); 
+    }
+  }, [userRole]);
 
-  ] : 
-  [
-    { name: 'Home', href: '/dashboard', icon: HomeIcon },
-    { name: 'EmiCalculator', href: '/dashboard/emiCalculator', icon: UserGroupIcon },
-  ]
+  if (loading) {
+    return <Spinner />; 
+  }
 
- 
+  const links =
+    userRole === 'admin'
+      ? [
+          { name: 'Home', href: '/dashboard', icon: HomeIcon },
+          { name: 'AllUsers', href: '/dashboard/allUsers', icon: UserGroupIcon },
+          {
+            name: 'UpdateRole',
+            href: '/dashboard/updateRole',
+            icon: DocumentDuplicateIcon,
+          },
+        ]
+      : [{ name: 'Home', href: '/dashboard', icon: HomeIcon }];
+
   return (
     <>
       {links.map((link) => {
