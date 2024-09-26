@@ -1,14 +1,14 @@
 "use client";
 
 import { createSlice } from "@reduxjs/toolkit";
-import Cookies from "js-cookie"; // Using js-cookie to access cookies easily
+import Cookies from "js-cookie";
 
 const initialState = {
   email: "",
   password: "", 
-  token: Cookies.get('token') || null, // Get token from cookies if available
-  user: Cookies.get('user') || null,  // Get user name from cookies if available
-  role: Cookies.get('role') || null,  // Get role from cookies if available
+  token: Cookies.get('token') || null,
+  user: Cookies.get('user') || null, 
+  role: Cookies.get('role') || null, 
 };
 
 const userSlice = createSlice({
