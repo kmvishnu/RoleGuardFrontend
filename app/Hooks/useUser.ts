@@ -6,11 +6,16 @@ import { useDispatch } from "react-redux";
 import { clearToken, setToken } from "../redux/slices/userSlice";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";  // Import js-cookie for cookie management
+import api, { useAxiosInterceptor } from "../common/axios";
+
 
 export const useUser = () => {
+  const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
   const [authData, setAuthData] = useState({ token: null, name: null, role: null }); 
   const dispatch = useDispatch();
+  useAxiosInterceptor(); 
+
 
   const signUpUser = async (userData: any) => {
     try {
@@ -18,6 +23,30 @@ export const useUser = () => {
       return {status: "success",...response.data}
     } catch (error) {
       console.error("signUp request failed:", error);
+      return { status: "error" };
+    }
+  };
+
+  const viewAllUsers = async () => {
+    try {
+      const response = await api.get(`${config.apiBaseUrl}/viewAllUsers`);
+      setUsers(response.data.data);
+
+    } catch (error) {
+      console.error("Failed to fetch all the user details", error);
+      return { status: "error" };
+    }
+  };
+
+  const assignRole = async (user:any,role:string) => {
+    try {
+      const response = await api.put(`${config.apiBaseUrl}/assignRole`,{
+        "userId":user,
+        "role":role
+      });
+      return {status:"success",...response.data}
+    } catch (error) {
+      console.error("Failed to fetch all the user details", error);
       return { status: "error" };
     }
   };
@@ -70,5 +99,8 @@ export const useUser = () => {
     loginUser,
     logoutUser,
     error,
+    viewAllUsers,
+    users,
+    assignRole
   };
 };
