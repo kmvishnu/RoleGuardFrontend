@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { useUser } from '../Hooks/useUser';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
+import Link from 'next/link';
  
 export default function LoginForm() {
 
@@ -164,6 +165,12 @@ export default function LoginForm() {
           
           {loading? "Loading...":"Log in"} <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-5 " />
         </Button>
+        <Link
+            href="/register"
+            className="flex items-center text-xs text-gray-2 p-2 transition-colors hover:text-blue-400 md:text-base"
+          >
+            <span>New User ? Sign Up</span> <ArrowRightIcon className="w-5 md:w-6" />
+          </Link>
         <div
           className="flex p-1.5 items-end space-x-1"
           aria-live="polite"
