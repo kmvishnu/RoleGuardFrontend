@@ -84,9 +84,7 @@ export default function LoginForm() {
       try {
         setLoading(true);
         const response = await loginUser(userData);
-        console.log("res",response)
         if (response.status === "success") {
-          console.log("insideee ")
           setLoading(false);
           sessionStorage.setItem("isAuthenticated", "true");
           router.push('/dashboard');

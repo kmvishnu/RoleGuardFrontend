@@ -109,7 +109,7 @@ export default function RegisterForm() {
                 return true;
             }
         },
-        [password] // Dependency on password
+        [password] 
     );
 
     useEffect(() => {
@@ -126,32 +126,6 @@ export default function RegisterForm() {
     }, [isEmailValid, isPasswordValid, isNameValid, isConfirmPasswordValid]);
 
 
-    // const handleSubmit = async (event: any) => {
-    //     event.preventDefault();
-    //     const userData = {
-    //         name: name,
-    //         email: email,
-    //         password: password,
-    //         confirmPassword: confirmPassword,
-    //     };
-    //     try {
-    //         setLoading(true);
-    //         const response = await signUpUser(userData);
-    //         if (response.status === "success") {
-    //             setIsSignupSuccess(true);
-    //             setLoading(false);
-    //             sessionStorage.setItem("isAuthenticated", "true");
-    //             router.push('/login');
-
-    //         }
-    //         setLoading(false);
-
-    //     } catch (error) {
-    //         console.error("Error signing up", error);
-    //         setLoading(false);
-    //     }
-    // };
-
     const handleSubmit = async (event: any) => {
         event.preventDefault();
         const userData = {
@@ -165,20 +139,20 @@ export default function RegisterForm() {
             const response = await signUpUser(userData);
     
             if (response.status === "success") {
-                setIsSignupSuccess(true);  // Show the success message
+                setIsSignupSuccess(true);  
     
-                // Set a timer for 3 seconds before redirecting
+                
                 setTimeout(() => {
                     setLoading(false);
                     sessionStorage.setItem("isAuthenticated", "true");
                     router.push('/login');
-                }, 3000); // 3 seconds delay
+                }, 3000); 
             } else {
-                setLoading(false);  // If not success, just stop loading
+                setLoading(false);  
             }
         } catch (error) {
             console.error("Error signing up", error);
-            setLoading(false); // Stop loading on error
+            setLoading(false); 
         }
     };
 

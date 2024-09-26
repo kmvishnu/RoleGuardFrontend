@@ -1,7 +1,5 @@
-import Pagination from '@/app/dashboard/allUsers/pagination';
 import Table from '@/app/dashboard/allUsers/table';
 import { lusitana } from '@/app/ui/fonts';
-import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
 
 import { Metadata } from 'next';

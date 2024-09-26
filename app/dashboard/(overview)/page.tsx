@@ -1,13 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { lusitana } from '@/app/ui/fonts';
 
 export default function Page() {
-  const [loanAmount, setLoanAmount] = useState<string>(''); // Initializing as an empty string
+  const [loanAmount, setLoanAmount] = useState<string>(''); 
   const [interestRate, setInterestRate] = useState<string>('');
   const [loanTenure, setLoanTenure] = useState<string>('');
-  const [emi, setEmi] = useState<number | null>(null); // Initializing emi as null
+  const [emi, setEmi] = useState<number | null>(null); 
 
   const calculateEMI = () => {
     const principal = Number(loanAmount);
@@ -19,10 +18,10 @@ export default function Page() {
       return;
     }
 
-    const r = rate / (12 * 100); // Monthly interest rate
-    const n = tenure * 12; // Loan tenure in months
+    const r = rate / (12 * 100); 
+    const n = tenure * 12; 
     const emiValue = (principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-    setEmi(Number(emiValue.toFixed(2))); // Rounding to 2 decimal places
+    setEmi(Number(emiValue.toFixed(2))); 
   };
 
   return (

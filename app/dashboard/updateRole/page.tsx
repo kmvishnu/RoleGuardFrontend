@@ -11,7 +11,7 @@ const UpdateRole = () => {
 
   useEffect(() => {
     viewAllUsers();
-  }, []);
+  }, [viewAllUsers]);
 
   useEffect(() => {
     if (users.length > 0) {

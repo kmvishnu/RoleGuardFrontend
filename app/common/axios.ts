@@ -1,23 +1,24 @@
 import axios from "axios";
 import config from "../config";
-import { clearToken, setAuthToken } from "../redux/slices/userSlice";
+import { clearToken } from "../redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie"; // For accessing cookies easily
+import Cookies from "js-cookie"; 
 import { jwtDecode } from "jwt-decode";
 
 const api = axios.create({
   baseURL: config.apiBaseUrl,
 });
 
-// Helper function to check if the token is still valid
+
 const isTokenValid = (token: string) => {
   try {
     const decoded:any = jwtDecode(token);
-    const now = Date.now().valueOf() / 1000; // Convert to seconds
-    return decoded.exp > now; // Check if token is still valid
+    const now = Date.now().valueOf() / 1000; 
+    return decoded.exp > now; 
   } catch (error) {
+    console.log(error)
     return false;
   }
 };
